@@ -12,33 +12,30 @@ class BaseTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        view.backgroundColor = .systemGreen
         
-        let appsController = templateNavController(title: "Apps", tabBarTitle: "Apps", image: #imageLiteral(resourceName: "apps"))
-        
-        let searchController = templateNavController(title: "Search", tabBarTitle: "Search", image: #imageLiteral(resourceName: "search"))
-        
-        let todayAppsController = templateNavController(title: "Today icon", tabBarTitle: "Today icon", image: #imageLiteral(resourceName: "icon"))
         
         viewControllers = [
-            appsController,
-            searchController,
-            todayAppsController
+            
+            createNavController(viewController: UIViewController(), title: "Today", imageName: #imageLiteral(resourceName: "icon")),
+            
+            createNavController(viewController: UIViewController(), title: "Apps", imageName: #imageLiteral(resourceName: "apps")),
+            
+            createNavController(viewController: AppsSearchController(), title: "Search", imageName: #imageLiteral(resourceName: "search"))
         ]
     }
     
-    fileprivate func templateNavController(rootController: UIViewController = UINavigationController(rootViewController: UIViewController()), title: String, tabBarTitle: String, image: UIImage) -> UINavigationController {
-        let viewController = UIViewController()
+
+     
+    fileprivate func createNavController(viewController: UIViewController, title: String, imageName: UIImage) -> UIViewController {
+        
+        let navController = UINavigationController(rootViewController: viewController)
+        viewController.view.backgroundColor = .white
         viewController.navigationItem.title = title
-             let navController = UINavigationController(rootViewController: viewController)
-             navController.tabBarItem.title = tabBarTitle
-             navController.navigationBar.prefersLargeTitles = true
-        navController.tabBarItem.image = image
+        navController.tabBarItem.title = title
+        navController.navigationBar.prefersLargeTitles = true
+        navController.tabBarItem.image = imageName
         return navController
     }
-    
 
 
 }
