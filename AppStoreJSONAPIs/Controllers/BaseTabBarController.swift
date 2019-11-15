@@ -31,11 +31,11 @@ class BaseTabBarController: UITabBarController {
         let navController = UINavigationController(rootViewController: viewController)
         viewController.view.backgroundColor = .white
         viewController.navigationItem.title = title
-        navController.tabBarItem.title = title
         navController.navigationBar.prefersLargeTitles = true
+        navController.tabBarItem.title = title
         navController.tabBarItem.image = imageName
         return navController
     }
-
+    
 
 }
