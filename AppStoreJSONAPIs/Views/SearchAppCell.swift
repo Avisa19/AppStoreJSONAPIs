@@ -87,7 +87,7 @@ class SearchAppCell: UICollectionViewCell {
        
         let infoTopStackView = UIStackView(arrangedSubviews: [
             appIconImageView,
-            VerticlStackView(arrangedViews: [
+            VerticalStackview(arrangedViews: [
                 nameLabel,
                 categoryLabel,
                 ratingLabel
@@ -101,7 +101,7 @@ class SearchAppCell: UICollectionViewCell {
         
         // overAll Stackview
    
-        let overAllStackView = VerticlStackView(arrangedViews: [
+        let overAllStackView = VerticalStackview(arrangedViews: [
             infoTopStackView,
             screenShotStackViews
         ], spacing: 16)
