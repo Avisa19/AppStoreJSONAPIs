@@ -1,22 +1,12 @@
 //
-//  Extensions+UIView.swift
-//  SlideOutMenuInProgress
+//  UIView+Layout.swift
+//  AppStoreJSONApis
 //
-//  Created by Brian Voong on 9/30/18.
-//  Copyright © 2018 Brian Voong. All rights reserved.
+//  Created by Brian Voong on 2/10/19.
+//  Copyright © 2019 Brian Voong. All rights reserved.
 //
 
 import UIKit
-
-extension UIColor {
-    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
-        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
-    }
-}
-
-struct AnchoredConstraints {
-    var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
-}
 
 // Reference Video: https://youtu.be/iqpAP7s3b-8
 extension UIView {
@@ -94,4 +84,31 @@ extension UIView {
         }
     }
     
+    func centerXInSuperview() {
+        translatesAutoresizingMaskIntoConstraints = false
+        if let superViewCenterXAnchor = superview?.centerXAnchor {
+            centerXAnchor.constraint(equalTo: superViewCenterXAnchor).isActive = true
+        }
+    }
+    
+    func centerYInSuperview() {
+        translatesAutoresizingMaskIntoConstraints = false
+        if let centerY = superview?.centerYAnchor {
+            centerYAnchor.constraint(equalTo: centerY).isActive = true
+        }
+    }
+    
+    func constrainWidth(constant: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        widthAnchor.constraint(equalToConstant: constant).isActive = true
+    }
+    
+    func constrainHeight(constant: CGFloat) {
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: constant).isActive = true
+    }
+}
+
+struct AnchoredConstraints {
+    var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
 }
