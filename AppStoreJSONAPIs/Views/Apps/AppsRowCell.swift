@@ -10,19 +10,24 @@ import UIKit
 
 class AppsRowCell: UICollectionViewCell {
     
-    let imageView = UIImageView(cornerRadius: 12, widthConstant: 64, heightConstant: 64)
+    let imageView = UIImageView(cornerRadius: 12)
     let nameLabel = UILabel(text: "App name", font: .systemFont(ofSize: 20))
     let companyLabel = UILabel(text: "Company name", font: .systemFont(ofSize: 13))
-    let getButton = UIButton(title: "GET", widthConstant: 80, heightConstant: 32)
+    let getButton = UIButton(title: "GET")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         imageView.backgroundColor = .systemPink
+        imageView.constrainWidth(constant: 64)
+        imageView.constrainHeight(constant: 64)
+        
+        getButton.constrainWidth(constant: 80)
+        getButton.constrainHeight(constant: 32)
         
         let stackview = UIStackView(arrangedSubviews: [
             imageView,
-            VerticalStackview(arrangedViews: [
+            VerticalStackView(arrangedSubviews: [
                 nameLabel,
                 companyLabel
             ]),

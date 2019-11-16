@@ -35,7 +35,7 @@ class SearchAppCell: UICollectionViewCell {
         }
     }
     
-    let appIconImageView = UIImageView(cornerRadius: 12, widthConstant: 64, heightConstant: 64)
+    let appIconImageView = UIImageView(cornerRadius: 12)
     
     let nameLabel = UILabel(text: "App Name", font: .systemFont(ofSize: 20))
     
@@ -43,7 +43,7 @@ class SearchAppCell: UICollectionViewCell {
     
     let ratingLabel = UILabel(text: "9.62M", font: .systemFont(ofSize: 14))
     
-    let getButton = UIButton(title: "GET", widthConstant: 80, heightConstant: 32)
+    let getButton = UIButton(title: "GET")
     
     lazy var screenShot1ImageView = self.createScreenShotImageView()
     
@@ -68,6 +68,12 @@ class SearchAppCell: UICollectionViewCell {
         backgroundColor = .white
         
         
+        appIconImageView.constrainWidth(constant: 64)
+        appIconImageView.constrainHeight(constant: 64)
+        
+        getButton.constrainWidth(constant: 80)
+        getButton.constrainHeight(constant: 32)
+        
         // screenshot Stackview
       
         let screenShotStackViews = UIStackView(arrangedSubviews: [
@@ -85,7 +91,7 @@ class SearchAppCell: UICollectionViewCell {
        
         let infoTopStackView = UIStackView(arrangedSubviews: [
             appIconImageView,
-            VerticalStackview(arrangedViews: [
+            VerticalStackView(arrangedSubviews: [
                 nameLabel,
                 categoryLabel,
                 ratingLabel
@@ -99,7 +105,7 @@ class SearchAppCell: UICollectionViewCell {
         
         // overAll Stackview
    
-        let overAllStackView = VerticalStackview(arrangedViews: [
+        let overAllStackView =  VerticalStackView(arrangedSubviews: [
             infoTopStackView,
             screenShotStackViews
         ], spacing: 16)

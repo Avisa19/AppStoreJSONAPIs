@@ -1,27 +1,26 @@
 //
-//  AppsController.swift
+//  AppsHeaderHorizentalController.swift
 //  AppStoreJSONAPIs
 //
-//  Created by Avisa Poshtkouhi on 15/11/19.
+//  Created by Avisa Poshtkouhi on 16/11/19.
 //  Copyright © 2019 Avisa Poshtkouhi. All rights reserved.
 //
 
 import UIKit
 
-private let appsIdentifier = "Cell"
+private let appsHeaderIdentifier = "Cell"
 
-class AppsController: BaseListController {
-    
+class AppsHeaderHorizentalController: BaseListController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         collectionView.backgroundColor = .white
-        self.collectionView!.register(AppsGroupCell.self, forCellWithReuseIdentifier: appsIdentifier)
+        self.collectionView!.register(AppsHeaderCell.self, forCellWithReuseIdentifier: appsHeaderIdentifier)
         
-    }
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,20 +28,20 @@ class AppsController: BaseListController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appsIdentifier, for: indexPath) as! AppsGroupCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appsHeaderIdentifier, for: indexPath) as! AppsHeaderCell
     
         return cell
     }
 
+
 }
 
-extension AppsController: UICollectionViewDelegateFlowLayout {
+extension AppsHeaderHorizentalController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: view.frame.width, height: 300)
+        return .init(width: view.frame.width - 48, height: view.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        return .init(top: 0, left: 16, bottom: 0, right: 0)
     }
 }
