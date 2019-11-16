@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		45E2095C01701E61CCDA11E5 /* Pods_AppStoreJSONAPIs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D622DFC0924495B56ED5151D /* Pods_AppStoreJSONAPIs.framework */; };
+		8B4CD7FC237F709400EE9C05 /* AppsRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4CD7FB237F709400EE9C05 /* AppsRowCell.swift */; };
+		8B4CD7FE237F71C500EE9C05 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4CD7FD237F71C500EE9C05 /* Extensions.swift */; };
 		8B4FDD1B237D630100EBF051 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FDD1A237D630100EBF051 /* AppDelegate.swift */; };
 		8B4FDD1D237D630100EBF051 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FDD1C237D630100EBF051 /* SceneDelegate.swift */; };
 		8B4FDD22237D630100EBF051 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B4FDD20237D630100EBF051 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 /* Begin PBXFileReference section */
 		062C00A9ECE09DCF775C9DB4 /* Pods-AppStoreJSONAPIs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreJSONAPIs.debug.xcconfig"; path = "Target Support Files/Pods-AppStoreJSONAPIs/Pods-AppStoreJSONAPIs.debug.xcconfig"; sourceTree = "<group>"; };
 		6D64C4868BABE34E381531E4 /* Pods-AppStoreJSONAPIs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreJSONAPIs.release.xcconfig"; path = "Target Support Files/Pods-AppStoreJSONAPIs/Pods-AppStoreJSONAPIs.release.xcconfig"; sourceTree = "<group>"; };
+		8B4CD7FB237F709400EE9C05 /* AppsRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsRowCell.swift; sourceTree = "<group>"; };
+		8B4CD7FD237F71C500EE9C05 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8B4FDD17237D630100EBF051 /* AppStoreJSONAPIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreJSONAPIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B4FDD1A237D630100EBF051 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B4FDD1C237D630100EBF051 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,24 @@
 				6D64C4868BABE34E381531E4 /* Pods-AppStoreJSONAPIs.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		8B4CD7F9237F6ED300EE9C05 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				8BEFA0F3237EAF1C00CD32D1 /* AppsController.swift */,
+				8BEFA0F9237EB6CA00CD32D1 /* AppsHorizentalController.swift */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		8B4CD7FA237F707400EE9C05 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				8BEFA0F7237EB24A00CD32D1 /* AppsGroupCell.swift */,
+				8B4CD7FB237F709400EE9C05 /* AppsRowCell.swift */,
+			);
+			path = Apps;
 			sourceTree = "<group>";
 		};
 		8B4FDD0E237D630100EBF051 = {
@@ -112,8 +134,7 @@
 			children = (
 				8B4FDD2F237D664D00EBF051 /* BaseTabBarController.swift */,
 				8BDD4C2C237E4FC500978319 /* AppsSearchController.swift */,
-				8BEFA0F3237EAF1C00CD32D1 /* AppsController.swift */,
-				8BEFA0F9237EB6CA00CD32D1 /* AppsHorizentalController.swift */,
+				8B4CD7F9237F6ED300EE9C05 /* Apps */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -122,7 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				8BDD4C2F237E548800978319 /* SearchAppCell.swift */,
-				8BEFA0F7237EB24A00CD32D1 /* AppsGroupCell.swift */,
+				8B4CD7FA237F707400EE9C05 /* Apps */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -133,6 +154,7 @@
 				8BDD4C34237E5C7D00978319 /* UIView+Layout.swift */,
 				8BDD4C3E237E8B8A00978319 /* VerticalStackview.swift */,
 				8BEFA0F5237EB16F00CD32D1 /* BaseListController.swift */,
+				8B4CD7FD237F71C500EE9C05 /* Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -282,9 +304,11 @@
 				8BDD4C3A237E7C9000978319 /* SearchResult.swift in Sources */,
 				8BEFA0F4237EAF1C00CD32D1 /* AppsController.swift in Sources */,
 				8B4FDD1B237D630100EBF051 /* AppDelegate.swift in Sources */,
+				8B4CD7FC237F709400EE9C05 /* AppsRowCell.swift in Sources */,
 				8BEFA0F6237EB16F00CD32D1 /* BaseListController.swift in Sources */,
 				8B4FDD1D237D630100EBF051 /* SceneDelegate.swift in Sources */,
 				8BEFA0F8237EB24A00CD32D1 /* AppsGroupCell.swift in Sources */,
+				8B4CD7FE237F71C500EE9C05 /* Extensions.swift in Sources */,
 				8BDD4C3D237E86FB00978319 /* Service.swift in Sources */,
 				8BDD4C30237E548800978319 /* SearchAppCell.swift in Sources */,
 				8BDD4C35237E5C7D00978319 /* UIView+Layout.swift in Sources */,

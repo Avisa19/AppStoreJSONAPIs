@@ -35,46 +35,15 @@ class SearchAppCell: UICollectionViewCell {
         }
     }
     
-    let appIconImageView: UIImageView = {
-       let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.constrainWidth(constant: 64)
-        iv.constrainHeight(constant: 64)
-        iv.layer.cornerRadius = 12
-        iv.clipsToBounds = true
-        return iv
-    }()
+    let appIconImageView = UIImageView(cornerRadius: 12, widthConstant: 64, heightConstant: 64)
     
-    let nameLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Appa Name"
-        return label
-    }()
+    let nameLabel = UILabel(text: "App Name", font: .systemFont(ofSize: 20))
     
-    let categoryLabel: UILabel = {
-       let label = UILabel()
-        label.text = "photos & videos"
-        return label
-    }()
+    let categoryLabel = UILabel(text: "photos & videos", font: .systemFont(ofSize: 14))
     
-    let ratingLabel: UILabel = {
-       let label = UILabel()
-        label.text = "9.62M"
-        return label
-    }()
+    let ratingLabel = UILabel(text: "9.62M", font: .systemFont(ofSize: 14))
     
-    let getButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Get", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        button.constrainWidth(constant: 80)
-        button.constrainHeight(constant: 32)
-        button.layer.cornerRadius = 16
-        return button
-    }()
+    let getButton = UIButton(title: "GET", widthConstant: 80, heightConstant: 32)
     
     lazy var screenShot1ImageView = self.createScreenShotImageView()
     
