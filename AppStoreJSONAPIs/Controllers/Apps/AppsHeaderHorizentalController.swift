@@ -11,6 +11,8 @@ import UIKit
 private let appsHeaderIdentifier = "Cell"
 
 class AppsHeaderHorizentalController: BaseListController {
+    
+    var socialApps = [FeedResult]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +23,19 @@ class AppsHeaderHorizentalController: BaseListController {
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
         }
+        
+
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return socialApps.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appsHeaderIdentifier, for: indexPath) as! AppsHeaderCell
-    
+        
+        cell.feedResult = socialApps[indexPath.item]
+        
         return cell
     }
 

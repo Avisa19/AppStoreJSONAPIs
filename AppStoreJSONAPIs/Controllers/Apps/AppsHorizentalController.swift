@@ -44,6 +44,7 @@ class AppsHorizentalController: BaseListController {
             
             let result = results[indexPath.item]
             cell.feedResult = result
+            
         }
         
         return cell

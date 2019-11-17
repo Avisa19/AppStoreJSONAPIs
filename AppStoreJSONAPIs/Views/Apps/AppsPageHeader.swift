@@ -11,6 +11,7 @@ import UIKit
 class AppsPageHeader: UICollectionReusableView {
     
     let appsHeaderHorizentalController = AppsHeaderHorizentalController()
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)

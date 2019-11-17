@@ -7,8 +7,18 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppsHeaderCell: UICollectionViewCell {
+    
+    var feedResult: FeedResult? {
+        didSet {
+            guard let feedResult = feedResult else { return }
+            companyLabel.text = feedResult.artistName
+            titleLabel.text = feedResult.name
+            imageView.sd_setImage(with: URL(string: feedResult.artworkUrl100), completed: nil)
+        }
+    }
     
     let companyLabel = UILabel(text: "Facebook", font: .boldSystemFont(ofSize: 12))
     
