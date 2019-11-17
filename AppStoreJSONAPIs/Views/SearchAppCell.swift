@@ -35,46 +35,15 @@ class SearchAppCell: UICollectionViewCell {
         }
     }
     
-    let appIconImageView: UIImageView = {
-       let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        iv.constrainWidth(constant: 64)
-        iv.constrainHeight(constant: 64)
-        iv.layer.cornerRadius = 12
-        iv.clipsToBounds = true
-        return iv
-    }()
+    let appIconImageView = UIImageView(cornerRadius: 12)
     
-    let nameLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Appa Name"
-        return label
-    }()
+    let nameLabel = UILabel(text: "App Name", font: .systemFont(ofSize: 20))
     
-    let categoryLabel: UILabel = {
-       let label = UILabel()
-        label.text = "photos & videos"
-        return label
-    }()
+    let categoryLabel = UILabel(text: "photos & videos", font: .systemFont(ofSize: 14))
     
-    let ratingLabel: UILabel = {
-       let label = UILabel()
-        label.text = "9.62M"
-        return label
-    }()
+    let ratingLabel = UILabel(text: "9.62M", font: .systemFont(ofSize: 14))
     
-    let getButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Get", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        button.constrainWidth(constant: 80)
-        button.constrainHeight(constant: 32)
-        button.layer.cornerRadius = 16
-        return button
-    }()
+    let getButton = UIButton(title: "GET")
     
     lazy var screenShot1ImageView = self.createScreenShotImageView()
     
@@ -99,6 +68,12 @@ class SearchAppCell: UICollectionViewCell {
         backgroundColor = .white
         
         
+        appIconImageView.constrainWidth(constant: 64)
+        appIconImageView.constrainHeight(constant: 64)
+        
+        getButton.constrainWidth(constant: 80)
+        getButton.constrainHeight(constant: 32)
+        
         // screenshot Stackview
       
         let screenShotStackViews = UIStackView(arrangedSubviews: [
@@ -116,7 +91,7 @@ class SearchAppCell: UICollectionViewCell {
        
         let infoTopStackView = UIStackView(arrangedSubviews: [
             appIconImageView,
-            VerticalStackview(arrangedViews: [
+            VerticalStackView(arrangedSubviews: [
                 nameLabel,
                 categoryLabel,
                 ratingLabel
@@ -130,7 +105,7 @@ class SearchAppCell: UICollectionViewCell {
         
         // overAll Stackview
    
-        let overAllStackView = VerticalStackview(arrangedViews: [
+        let overAllStackView =  VerticalStackView(arrangedSubviews: [
             infoTopStackView,
             screenShotStackViews
         ], spacing: 16)

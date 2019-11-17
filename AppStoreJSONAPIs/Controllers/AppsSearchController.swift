@@ -11,7 +11,7 @@ import SDWebImage
 
 private let searchIdentifier = "Cell"
 
-class AppsSearchController: UICollectionViewController {
+class AppsSearchController: BaseListController {
     
     fileprivate let searchController = UISearchController(searchResultsController: nil)
     
@@ -68,14 +68,7 @@ class AppsSearchController: UICollectionViewController {
         
         return cell
     }
-    
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+  
 }
 
 extension AppsSearchController: UICollectionViewDelegateFlowLayout {
