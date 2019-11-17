@@ -7,10 +7,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 private let appsHorizentalIdentifier = "Cell"
 
 class AppsHorizentalController: BaseListController {
+    
+    var appGroup: AppGroup? {
+        didSet {
+            
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +34,18 @@ class AppsHorizentalController: BaseListController {
  
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 5
+        return appGroup?.feed.results.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appsHorizentalIdentifier, for: indexPath) as! AppsRowCell
-    
-    
+        
+        if let results = appGroup?.feed.results {
+            
+            let result = results[indexPath.item]
+            cell.feedResult = result
+        }
+        
         return cell
     }
     

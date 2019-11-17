@@ -24,7 +24,7 @@ class AppsPageController: BaseListController {
         fetchData()
     }
     
-    var appsGroup = [AppGroup]()
+    var editorChoiceGame: AppGroup?
     
     fileprivate func fetchData() {
         
@@ -36,7 +36,7 @@ class AppsPageController: BaseListController {
             
             guard let appGroup = appGroup else { return }
             
-            self.appsGroup.append(appGroup)
+            self.editorChoiceGame = appGroup
             
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -57,13 +57,15 @@ class AppsPageController: BaseListController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return appsGroup.count
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appsIdentifier, for: indexPath) as! AppsGroupCell
     
-        cell.titleLabel.text = appsGroup[indexPath.item].feed.title
+        cell.titleLabel.text = editorChoiceGame?.feed.title
+        cell.horizentalController.appGroup = editorChoiceGame
+        cell.horizentalController.collectionView.reloadData()
         
         return cell
     }
