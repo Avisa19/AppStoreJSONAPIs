@@ -43,29 +43,51 @@ class Service {
         }.resume() // fires off the request
     }
     
-    func fetchGames(completion: @escaping (AppGroup?, Error?) -> ()) {
-        guard let url = URL(string: "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-games-we-love/all/50/explicit.json") else { return }
+    func fetchTopGrossing(completion: @escaping (AppGroup?, Error?) -> ()) {
         
-        URLSession.shared.dataTask(with: url) { (data, respo, err) in
-            
-            if let err = err {
-                print("Failed to fecth games:", err)
-                completion(nil, err)
-                return
-            }
-            
-            guard let data = data else { return }
-            
-            do {
-                let appGroup = try JSONDecoder().decode(AppGroup.self, from: data)
-                
-               completion(appGroup, nil)
-                
-            } catch let fetchGameErr {
-                print("Failed to fetch game data into jason:", fetchGameErr)
-                completion(nil, fetchGameErr)
-            }
-            
-        }.resume() // This will fire your request.
+        let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-grossing/all/25/explicit.json"
+        
+        fetchAppGroup(urlString: urlString, completion: completion)
+        
+    }
+    
+    func fetchGames(completion: @escaping (AppGroup?, Error?) -> ()) {
+        
+        let url = "https://rss.itunes.apple.com/api/v1/us/ios-apps/new-games-we-love/all/50/explicit.json"
+        
+        fetchAppGroup(urlString: url, completion: completion)
+    }
+    
+    func fetchTopFree(completion: @escaping (AppGroup?, Error?) -> ()) {
+        let urlString = "https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/25/explicit.json"
+        fetchAppGroup(urlString: urlString, completion: completion)
+    }
+    
+    // helper
+    func fetchAppGroup(urlString: String, completion: @escaping (AppGroup?, Error?) -> Void) {
+        
+        guard let url = URL(string: urlString) else { return }
+              
+              URLSession.shared.dataTask(with: url) { (data, respo, err) in
+                  
+                  if let err = err {
+                      print("Failed to fecth games:", err)
+                      completion(nil, err)
+                      return
+                  }
+                  
+                  guard let data = data else { return }
+                  
+                  do {
+                      let appGroup = try JSONDecoder().decode(AppGroup.self, from: data)
+                      
+                     completion(appGroup, nil)
+                      
+                  } catch let fetchAppErr {
+                      print("Failed to fetch game data into jason:", fetchAppErr)
+                      completion(nil, fetchAppErr)
+                  }
+                  
+              }.resume() // This will fire your request.
     }
 }
