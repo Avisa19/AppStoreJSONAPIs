@@ -29,6 +29,7 @@ class AppsHeaderCell: UICollectionViewCell {
             imageView
         ], spacing: 12)
         
+        // it's very important point
         // here the size of stackview in the cell
         // we should reSize the cell so we go to VC and will change it.
         addSubview(verticalStackView)

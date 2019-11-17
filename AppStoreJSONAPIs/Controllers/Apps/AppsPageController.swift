@@ -20,6 +20,28 @@ class AppsPageController: BaseListController {
         self.collectionView!.register(AppsGroupCell.self, forCellWithReuseIdentifier: appsIdentifier)
         
         self.collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
+        fetchData()
+    }
+    
+    var appsGroup = [AppGroup]()
+    
+    fileprivate func fetchData() {
+        
+        Service.shared.fetchGames { (appGroup, err) in
+            if let err = err {
+                print("Failed to fetch game data:", err)
+                return
+            }
+            
+            guard let appGroup = appGroup else { return }
+            
+            self.appsGroup.append(appGroup)
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -32,18 +54,17 @@ class AppsPageController: BaseListController {
         
         return CGSize(width: view.frame.width, height: 300)
     }
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
-    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        
+        return appsGroup.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: appsIdentifier, for: indexPath) as! AppsGroupCell
     
+        cell.titleLabel.text = appsGroup[indexPath.item].feed.title
+        
         return cell
     }
 
