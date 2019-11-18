@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 private let detailCellId = "DetailCell"
 
@@ -17,15 +18,23 @@ class AppDetailController : BaseListController {
             
             guard let appId = appId else { return }
             let urlString = "https://itunes.apple.com/lookup?id=\(appId)"
-            Service.shared.fetchGenericJSONData(urlString: urlString) { (result: SearchResult?, err) in
+            Service.shared.fetchGenericJSONData(urlString: urlString) { (app: SearchResult?, err) in
                 if let err = err {
                     print("Failed to fetch App's Detail:", err)
                     return
                 }
                 // Success
+                let app = app?.results.first
+                self.app = app
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
         }
     }
+    
+    var app: Result?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +52,7 @@ class AppDetailController : BaseListController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath) as! AppsDetailCell
+        cell.app = self.app
         return cell
     }
 }
@@ -51,7 +61,15 @@ class AppDetailController : BaseListController {
 extension AppDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width, height: 300)
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 1000)
+        let dummyCell = AppsDetailCell(frame: frame)
+        dummyCell.app = self.app
+        dummyCell.layoutIfNeeded()
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+        
+        return CGSize(width: view.frame.width, height: estimatedSize.height)
     }
     
     

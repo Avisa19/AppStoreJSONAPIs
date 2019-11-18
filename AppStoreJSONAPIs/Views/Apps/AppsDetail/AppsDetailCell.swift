@@ -10,6 +10,17 @@ import UIKit
 
 class AppsDetailCell: UICollectionViewCell {
     
+    var app: Result? {
+        didSet {
+            if let app = app {
+                appIconImageView.sd_setImage(with: URL(string: app.artworkUrl100), completed: nil)
+                appLabel.text = app.trackName
+                priceButton.setTitle(app.formattedPrice, for: .normal)
+                releasedNoteLabel.text = app.releaseNotes
+            }
+        }
+    }
+    
     let appIconImageView = UIImageView(cornerRadius: 16)
     let appLabel = UILabel(text: "Facebook, Inc", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
     let priceButton = UIButton(title: "$4.99")
