@@ -144,6 +144,7 @@ class AppsPageController: BaseListController {
             
             let appDetailController = AppDetailController()
             appDetailController.navigationItem.title = feedResult.name
+            appDetailController.appId = feedResult.id
             self?.navigationController?.pushViewController(appDetailController, animated: true)
         }
         
