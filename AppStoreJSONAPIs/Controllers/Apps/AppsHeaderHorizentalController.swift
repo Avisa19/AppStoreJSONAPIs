@@ -10,7 +10,7 @@ import UIKit
 
 private let appsHeaderIdentifier = "Cell"
 
-class AppsHeaderHorizentalController: BaseListController {
+class AppsHeaderHorizentalController: HorizentalSnappingController {
     
     var socialApps = [FeedResult]()
 
@@ -20,10 +20,7 @@ class AppsHeaderHorizentalController: BaseListController {
         collectionView.backgroundColor = .white
         self.collectionView!.register(AppsHeaderCell.self, forCellWithReuseIdentifier: appsHeaderIdentifier)
         
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
-        
+        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 
     }
 
@@ -48,6 +45,6 @@ extension AppsHeaderHorizentalController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 0, left: 16, bottom: 0, right: 0)
+        return .zero
     }
 }

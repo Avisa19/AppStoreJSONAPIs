@@ -44,34 +44,7 @@ class Service {
         fetchGenericJSONData(urlString: urlString, completion: completion)
         
     }
-    
-    // helper
-    func fetchAppGroup(urlString: String, completion: @escaping (AppGroup?, Error?) -> Void) {
-        
-        guard let url = URL(string: urlString) else { return }
-              
-              URLSession.shared.dataTask(with: url) { (data, respo, err) in
-                  
-                  if let err = err {
-                      print("Failed to fecth games:", err)
-                      completion(nil, err)
-                      return
-                  }
-                  
-                  guard let data = data else { return }
-                  
-                  do {
-                      let appGroup = try JSONDecoder().decode(AppGroup.self, from: data)
-                      
-                     completion(appGroup, nil)
-                      
-                  } catch let fetchAppErr {
-                      print("Failed to fetch game data into jason:", fetchAppErr)
-                      completion(nil, fetchAppErr)
-                  }
-                  
-              }.resume() // This will fire your request.
-    }
+ 
     
     // declare my generic json data here
     func fetchGenericJSONData<T: Decodable>(urlString: String, completion: @escaping (T?, Error?) -> Void) {

@@ -11,23 +11,17 @@ import SDWebImage
 
 private let appsHorizentalIdentifier = "Cell"
 
-class AppsHorizentalController: BaseListController {
+class AppsHorizentalController: HorizentalSnappingController {
     
-    var appGroup: AppGroup? {
-        didSet {
-            
-        }
-    }
+    var appGroup: AppGroup? 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collectionView.backgroundColor = .white
-        self.collectionView!.register(AppsRowCell.self, forCellWithReuseIdentifier: appsHorizentalIdentifier)
-        
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
+        collectionView.register(AppsRowCell.self, forCellWithReuseIdentifier: appsHorizentalIdentifier)
+     
+        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
 
     }
 
@@ -68,7 +62,7 @@ extension AppsHorizentalController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: topBottomPadding, left: 16, bottom: 12, right: topBottomPadding)
+        return UIEdgeInsets(top: topBottomPadding, left: 0, bottom: topBottomPadding, right: 0)
     }
    
 }
