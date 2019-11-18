@@ -30,8 +30,7 @@ class AppsSearchController: BaseListController {
         
         collectionView.backgroundColor = .white
         self.collectionView!.register(SearchAppCell.self, forCellWithReuseIdentifier: searchIdentifier)
-        
-//        fetchiTunesApps()
+  
         collectionView.addSubview(enterSearchTermLabel)
         enterSearchTermLabel.fillSuperview(padding: .init(top: 250, left: 0, bottom: 0, right: 0))
         enterSearchTermLabel.centerXInSuperview()
@@ -40,21 +39,6 @@ class AppsSearchController: BaseListController {
     }
     
     fileprivate var appsResult = [Result]()
-    
-    fileprivate func fetchiTunesApps() {
-        
-        Service.shared.fetchApps(searchTerm: "Twitter") { (results, err) in
-            if let err = err {
-                print("Failed to fetch jsonData:", err)
-                return
-            }
-            
-            self.appsResult = results
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         enterSearchTermLabel.isHidden = appsResult.count != 0
@@ -98,13 +82,13 @@ extension AppsSearchController: UISearchBarDelegate {
         timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             
             // this actually fire my search
-            Service.shared.fetchApps(searchTerm: searchText) { (results, err) in
+            Service.shared.fetchApps(searchTerm: searchText) { (searchResult, err) in
                       if let err = err {
                           print("Failed to fetch search:", err)
                           return
                       }
                       
-                      self.appsResult = results
+                self.appsResult = searchResult?.results ?? []
                       DispatchQueue.main.async {
                           self.collectionView.reloadData()
                       }
