@@ -140,6 +140,12 @@ class AppsPageController: BaseListController {
         cell.titleLabel.text = appsGroup.feed.title
         cell.horizentalController.appGroup = appsGroup
         cell.horizentalController.collectionView.reloadData()
+        cell.horizentalController.didSelectHandler = { [weak self] feedResult in
+            
+            let appDetailController = AppDetailController()
+            appDetailController.navigationItem.title = feedResult.name
+            self?.navigationController?.pushViewController(appDetailController, animated: true)
+        }
         
         return cell
     }
@@ -156,3 +162,5 @@ extension AppsPageController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
     }
 }
+
+

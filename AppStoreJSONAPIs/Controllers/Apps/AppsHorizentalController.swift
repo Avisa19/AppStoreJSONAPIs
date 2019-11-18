@@ -13,7 +13,9 @@ private let appsHorizentalIdentifier = "Cell"
 
 class AppsHorizentalController: HorizentalSnappingController {
     
-    var appGroup: AppGroup? 
+    var appGroup: AppGroup?
+    
+    var didSelectHandler: ((FeedResult) -> ())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,4 +67,13 @@ extension AppsHorizentalController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: topBottomPadding, left: 0, bottom: topBottomPadding, right: 0)
     }
    
+}
+
+extension AppsHorizentalController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let app = appGroup?.feed.results[indexPath.item] {
+            didSelectHandler?(app)
+        }
+    }
 }
