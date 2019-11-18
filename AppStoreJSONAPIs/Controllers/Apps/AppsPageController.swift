@@ -115,7 +115,7 @@ class AppsPageController: BaseListController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerIdentifier, for: indexPath) as! AppsPageHeader
-       
+//       self.activityIndicatorView.stopAnimating()
         header.appsHeaderHorizentalController.socialApps = self.socialApps
         header.appsHeaderHorizentalController.collectionView.reloadData()
         
