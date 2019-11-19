@@ -24,7 +24,7 @@ class ReviewRowController: HorizentalSnappingController {
         collectionView.backgroundColor = .white
         collectionView.register(ReviewAndRatingCell.self, forCellWithReuseIdentifier: reviewAndRatingCellId)
      
-        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.contentInset = .init(top: 0, left: 16, bottom: 20, right: 16)
      
     }
     
@@ -52,4 +52,5 @@ extension ReviewRowController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16
     }
+    
 }

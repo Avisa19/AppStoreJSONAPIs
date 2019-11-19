@@ -41,6 +41,7 @@ class AppDetailController : BaseListController {
                     print("Failed to fetch reviews Detail:", err)
                     return
                 }
+                
                 // success
                 self.reviews = reviews
                 
