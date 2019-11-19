@@ -10,7 +10,7 @@ import UIKit
 
 class PreviewCell: UICollectionViewCell {
     
-    let previewLabel = UILabel(text: "Preview", font: .systemFont(ofSize: 20, weight: .heavy))
+    let previewLabel = UILabel(text: "Preview", font: .systemFont(ofSize: 20, weight: .medium))
     
     let horizentalController = PreviewScreenShotsController()
     

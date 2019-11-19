@@ -13,7 +13,11 @@ private let screenshotId = "ScreenshotId"
 
 class PreviewScreenShotsController: HorizentalSnappingController {
     
-    var app: Result?
+    var app: Result? {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +34,8 @@ class PreviewScreenShotsController: HorizentalSnappingController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: screenshotId, for: indexPath) as! PreviewScreenshotsCell
-        if let screenshots = app?.screenshotUrls[indexPath.item] {
+        
+        if let screenshots = self.app?.screenshotUrls[indexPath.item] {
             cell.imageView.sd_setImage(with: URL(string: screenshots), completed: nil)
         }
         
@@ -43,5 +48,6 @@ extension PreviewScreenShotsController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: 250, height: view.frame.height)
+        
     }
 }

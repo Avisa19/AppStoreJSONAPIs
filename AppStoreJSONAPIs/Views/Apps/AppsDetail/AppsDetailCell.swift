@@ -26,6 +26,7 @@ class AppsDetailCell: UICollectionViewCell {
     let priceButton = UIButton(title: "$4.99")
     let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 20))
     let releasedNoteLabel = UILabel(text: "Released Note", font: .systemFont(ofSize: 16), numberOfLines: 0)
+    let separatorLine = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -61,6 +62,10 @@ class AppsDetailCell: UICollectionViewCell {
         
         addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 20, left: 20, bottom: 20, right: 20))
+        
+        addSubview(separatorLine)
+        separatorLine.anchor(top: stackView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 12, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 0.5))
+        separatorLine.backgroundColor = UIColor(white: 0.7, alpha: 0.5)
     }
     
     required init?(coder: NSCoder) {
