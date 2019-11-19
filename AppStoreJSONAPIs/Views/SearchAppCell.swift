@@ -19,7 +19,8 @@ class SearchAppCell: UICollectionViewCell {
             
             categoryLabel.text = appResult.primaryGenreName
             
-            ratingLabel.text = "Rating: " +  "\(appResult.averageUserRating)"
+            guard let rating = appResult.averageUserRating else { return }
+            ratingLabel.text = "Rating: " +  "\(rating)"
             
             appIconImageView.sd_setImage(with: URL(string: appResult.artworkUrl100))
             

@@ -32,7 +32,6 @@ class AppsDetailCell: UICollectionViewCell {
         super.init(frame: frame)
         
         backgroundColor = .white
-        appIconImageView.backgroundColor = .systemPink
         appIconImageView.constrainWidth(constant: 140)
         appIconImageView.constrainHeight(constant: 140)
     

@@ -144,9 +144,7 @@ class AppsPageController: BaseListController {
         cell.horizentalController.collectionView.reloadData()
         cell.horizentalController.didSelectHandler = { [weak self] feedResult in
             
-            let appDetailController = AppDetailController()
-           
-            appDetailController.appId = feedResult.id
+            let appDetailController = AppDetailController(appId: feedResult.id)
             self?.navigationController?.pushViewController(appDetailController, animated: true)
         }
         

@@ -23,6 +23,8 @@ extension UIImageView {
         self.layer.cornerRadius = cornerRadius
         self.clipsToBounds = true
         self.contentMode = .scaleAspectFill
+        self.layer.borderWidth = 0.5
+        self.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
     }
 }
 
