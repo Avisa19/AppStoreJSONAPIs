@@ -27,6 +27,7 @@
 		8B4FDD24237D630500EBF051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B4FDD23237D630500EBF051 /* Assets.xcassets */; };
 		8B4FDD27237D630500EBF051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B4FDD25237D630500EBF051 /* LaunchScreen.storyboard */; };
 		8B4FDD30237D664D00EBF051 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FDD2F237D664D00EBF051 /* BaseTabBarController.swift */; };
+		8BB156AD2383AE1E0057DD82 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB156AC2383AE1E0057DD82 /* Reviews.swift */; };
 		8BDD4C2D237E4FC500978319 /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C2C237E4FC500978319 /* AppsSearchController.swift */; };
 		8BDD4C30237E548800978319 /* SearchAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C2F237E548800978319 /* SearchAppCell.swift */; };
 		8BDD4C35237E5C7D00978319 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C34237E5C7D00978319 /* UIView+Layout.swift */; };
@@ -66,6 +67,7 @@
 		8B4FDD26237D630500EBF051 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B4FDD28237D630500EBF051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B4FDD2F237D664D00EBF051 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		8BB156AC2383AE1E0057DD82 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
 		8BDD4C2C237E4FC500978319 /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		8BDD4C2F237E548800978319 /* SearchAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppCell.swift; sourceTree = "<group>"; };
 		8BDD4C34237E5C7D00978319 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				8BDD4C39237E7C9000978319 /* SearchResult.swift */,
 				8B4B6AD0237FF80A0099D3EF /* AppGroup.swift */,
+				8BB156AC2383AE1E0057DD82 /* Reviews.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				8BFE29E92382638C00C6D588 /* AppDetailController.swift in Sources */,
 				8BEFA0F8237EB24A00CD32D1 /* AppsGroupCell.swift in Sources */,
 				8B0BC2682382A24C000AB876 /* PreviewScreenshotsCell.swift in Sources */,
+				8BB156AD2383AE1E0057DD82 /* Reviews.swift in Sources */,
 				8B4CD7FE237F71C500EE9C05 /* Extensions.swift in Sources */,
 				8BDD4C3D237E86FB00978319 /* Service.swift in Sources */,
 				8B4863972383929D001AC212 /* ReviewRowController.swift in Sources */,

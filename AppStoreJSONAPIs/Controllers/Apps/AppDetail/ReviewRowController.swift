@@ -12,6 +12,12 @@ private let reviewAndRatingCellId = "ReviewAndRatingCell"
 
 class ReviewRowController: HorizentalSnappingController {
     
+    var reviews: Reviews? {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,11 +29,14 @@ class ReviewRowController: HorizentalSnappingController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return reviews?.feed.entry.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewAndRatingCellId, for: indexPath) as! ReviewAndRatingCell
+        
+        let entry = reviews?.feed.entry[indexPath.item]
+        cell.entry = entry
         
         return cell
     }

@@ -33,10 +33,27 @@ class AppDetailController : BaseListController {
                     self.collectionView.reloadData()
                 }
             }
+            
+               let reviewsUrl = "https://itunes.apple.com/rss/customerreviews/page=1/id=\(appId)/sortby=mostrecent/json?l=en&cc=us"
+            print(reviewsUrl)
+            Service.shared.fetchGenericJSONData(urlString: reviewsUrl) { (reviews: Reviews?, err) in
+                if let err = err {
+                    print("Failed to fetch reviews Detail:", err)
+                    return
+                }
+                // success
+                self.reviews = reviews
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+           
         }
     }
     
     var app: Result?
+    var reviews: Reviews?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +67,7 @@ class AppDetailController : BaseListController {
         collectionView.register(ReviewCell.self, forCellWithReuseIdentifier: reviewCellId)
         
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
@@ -67,6 +85,9 @@ class AppDetailController : BaseListController {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewCellId, for: indexPath) as! ReviewCell
+            
+            cell.reviewController.reviews = self.reviews
+            
             return cell
         }
     }
@@ -77,29 +98,22 @@ extension AppDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var height: CGFloat = 280
-        
+              
         if indexPath.item == 0 {
-            
-            let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 1000)
-            let dummyCell = AppsDetailCell(frame: frame)
-            dummyCell.app = self.app
+            // calculate the necessary size for our cell somehow
+            let dummyCell = AppsDetailCell(frame: .init(x: 0, y: 0, width: view.frame.width, height: 1000))
+            dummyCell.app = app
             dummyCell.layoutIfNeeded()
             
-            let targetSize = CGSize(width: view.frame.width, height: 1000)
-            let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
-            
+            let estimatedSize = dummyCell.systemLayoutSizeFitting(.init(width: view.frame.width, height: 1000))
             height = estimatedSize.height
-            
         } else if indexPath.item == 1 {
-            
             height = 500
-            
         } else {
             height = 280
         }
         
         return .init(width: view.frame.width, height: height)
     }
-    
     
 }
