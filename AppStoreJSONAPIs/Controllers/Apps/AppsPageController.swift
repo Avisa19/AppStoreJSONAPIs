@@ -24,13 +24,14 @@ class AppsPageController: BaseListController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .white
-        self.collectionView!.register(AppsGroupCell.self, forCellWithReuseIdentifier: appsIdentifier)
-        
-        self.collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
-        
         view.addSubview(activityIndicatorView)
         activityIndicatorView.fillSuperview()
+        
+        collectionView.backgroundColor = .white
+        
+        self.collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        self.collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: appsIdentifier)
+        
         
         fetchData()
     }
@@ -94,8 +95,9 @@ class AppsPageController: BaseListController {
             
         }
         
+        
         dispatchGroup.notify(queue: .main) {
-            print("Completed your dispatch group tasks...")
+            
             self.activityIndicatorView.stopAnimating()
             
             if let group = group1 {
@@ -162,6 +164,7 @@ extension AppsPageController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
     }
+  
 }
 
 

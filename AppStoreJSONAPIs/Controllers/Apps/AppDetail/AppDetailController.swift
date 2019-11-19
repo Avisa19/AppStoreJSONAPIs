@@ -11,6 +11,7 @@ import SDWebImage
 
 private let detailCellId = "DetailCell"
 private let previewCellId = "previewCellId"
+private let reviewCellId = "reviewCellId"
 
 class AppDetailController : BaseListController {
     
@@ -46,11 +47,12 @@ class AppDetailController : BaseListController {
         
         collectionView.register(PreviewCell.self, forCellWithReuseIdentifier: previewCellId)
         
-        navigationItem.largeTitleDisplayMode = .never
+        collectionView.register(ReviewCell.self, forCellWithReuseIdentifier: reviewCellId)
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -59,9 +61,12 @@ class AppDetailController : BaseListController {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath) as! AppsDetailCell
             cell.app = self.app
             return cell
-        } else {
+        } else if indexPath.item == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: previewCellId, for: indexPath) as! PreviewCell
             cell.horizentalController.app = self.app
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewCellId, for: indexPath) as! ReviewCell
             return cell
         }
     }
@@ -70,6 +75,8 @@ class AppDetailController : BaseListController {
 
 extension AppDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        var height: CGFloat = 280
         
         if indexPath.item == 0 {
             
@@ -81,12 +88,17 @@ extension AppDetailController: UICollectionViewDelegateFlowLayout {
             let targetSize = CGSize(width: view.frame.width, height: 1000)
             let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
             
-            return CGSize(width: view.frame.width, height: estimatedSize.height)
+            height = estimatedSize.height
+            
+        } else if indexPath.item == 1 {
+            
+            height = 500
             
         } else {
-            
-            return CGSize(width: view.frame.width, height: 500)
+            height = 280
         }
+        
+        return .init(width: view.frame.width, height: height)
     }
     
     
