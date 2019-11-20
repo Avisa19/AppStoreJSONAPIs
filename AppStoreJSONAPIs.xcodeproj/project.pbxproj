@@ -30,6 +30,8 @@
 		8B4FDD27237D630500EBF051 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B4FDD25237D630500EBF051 /* LaunchScreen.storyboard */; };
 		8B4FDD30237D664D00EBF051 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4FDD2F237D664D00EBF051 /* BaseTabBarController.swift */; };
 		8BB156AD2383AE1E0057DD82 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB156AC2383AE1E0057DD82 /* Reviews.swift */; };
+		8BC1090A23852238003FA32B /* AppFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1090923852238003FA32B /* AppFullScreenController.swift */; };
+		8BC1090C238525E8003FA32B /* AppFullScreenDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC1090B238525E8003FA32B /* AppFullScreenDescriptionCell.swift */; };
 		8BDD4C2D237E4FC500978319 /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C2C237E4FC500978319 /* AppsSearchController.swift */; };
 		8BDD4C30237E548800978319 /* SearchAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C2F237E548800978319 /* SearchAppCell.swift */; };
 		8BDD4C35237E5C7D00978319 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C34237E5C7D00978319 /* UIView+Layout.swift */; };
@@ -72,6 +74,8 @@
 		8B4FDD28237D630500EBF051 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B4FDD2F237D664D00EBF051 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		8BB156AC2383AE1E0057DD82 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
+		8BC1090923852238003FA32B /* AppFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullScreenController.swift; sourceTree = "<group>"; };
+		8BC1090B238525E8003FA32B /* AppFullScreenDescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFullScreenDescriptionCell.swift; sourceTree = "<group>"; };
 		8BDD4C2C237E4FC500978319 /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		8BDD4C2F237E548800978319 /* SearchAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppCell.swift; sourceTree = "<group>"; };
 		8BDD4C34237E5C7D00978319 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				8B479AA02384D7C7002A301C /* TodayController.swift */,
+				8BC1090923852238003FA32B /* AppFullScreenController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				8B479AA32384DA7F002A301C /* TodayCell.swift */,
+				8BC1090B238525E8003FA32B /* AppFullScreenDescriptionCell.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 				8BEFA0F4237EAF1C00CD32D1 /* AppsPageController.swift in Sources */,
 				8B48639923839342001AC212 /* ReviewAndRatingCell.swift in Sources */,
 				8B4FDD1B237D630100EBF051 /* AppDelegate.swift in Sources */,
+				8BC1090C238525E8003FA32B /* AppFullScreenDescriptionCell.swift in Sources */,
 				8B479AA42384DA7F002A301C /* TodayCell.swift in Sources */,
 				8B4CD7FC237F709400EE9C05 /* AppsRowCell.swift in Sources */,
 				8BFE29EB2382737900C6D588 /* AppsDetailCell.swift in Sources */,
@@ -409,6 +416,7 @@
 				8BDD4C3D237E86FB00978319 /* Service.swift in Sources */,
 				8B4863972383929D001AC212 /* ReviewRowController.swift in Sources */,
 				8BDD4C30237E548800978319 /* SearchAppCell.swift in Sources */,
+				8BC1090A23852238003FA32B /* AppFullScreenController.swift in Sources */,
 				8B4A546A2382450500FD6C2B /* HorizentalSnappingController.swift in Sources */,
 				8B0BC26623829F33000AB876 /* PreviewScreenShotsController.swift in Sources */,
 				8BDD4C35237E5C7D00978319 /* UIView+Layout.swift in Sources */,

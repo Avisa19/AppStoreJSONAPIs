@@ -34,6 +34,7 @@ class TodayController: BaseListController {
     }
     
     var startingFrame: CGRect?
+    var appFullScreenController: UIViewController?
 }
 
 extension TodayController: UICollectionViewDelegateFlowLayout {
@@ -49,12 +50,15 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
 extension TodayController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let pinkView = UIView()
-        pinkView.backgroundColor = .systemPink
-        pinkView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemovePinkView)))
-        view.addSubview(pinkView)
+        let appFullscreenController = AppFullScreenController()
+        appFullscreenController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemovePinkView)))
+        view.addSubview(appFullscreenController.view)
         
-        pinkView.layer.cornerRadius = 16
+        addChild(appFullscreenController)
+        
+        self.appFullScreenController = appFullscreenController
+        
+        appFullscreenController.view.layer.cornerRadius = 16
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         // absolute coordinates of cell
@@ -63,11 +67,15 @@ extension TodayController {
         
         self.startingFrame = startingFrame
         
-        pinkView.frame = startingFrame
+        // 1.start move
+        appFullscreenController.view.frame = startingFrame
+        
+        // frames are not reliable for animation
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
-            
-            pinkView.frame = self.view.frame
+            // 2.second move
+            appFullscreenController.view.frame = self.view.frame
+            self.tabBarController?.tabBar.isHidden = true
             
         }, completion: nil)
         
@@ -78,11 +86,14 @@ extension TodayController {
         // access starting frame
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
+            // 3.and with tap ... last move
             gesture.view?.frame = self.startingFrame ?? .zero
+            self.tabBarController?.tabBar.isHidden = false
             
         }, completion: { _ in
-            
+            // 4. remove completely
             gesture.view?.removeFromSuperview()
+            self.appFullScreenController?.removeFromParent()
         })
     }
 }
