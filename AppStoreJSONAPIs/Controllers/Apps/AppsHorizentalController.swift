@@ -15,6 +15,7 @@ class AppsHorizentalController: HorizentalSnappingController {
     
     var appGroup: AppGroup?
     
+    
     var didSelectHandler: ((FeedResult) -> ())?
 
     override func viewDidLoad() {
