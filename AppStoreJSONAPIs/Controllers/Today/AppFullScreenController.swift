@@ -26,12 +26,7 @@ class AppFullScreenController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            // hack
-            let cell = UITableViewCell()
-            let todayCell = TodayCell()
-            cell.addSubview(todayCell)
-            todayCell.centerInSuperview(size: .init(width: 240, height: 240))
-            return cell
+            return AppFullScreenHeaderCell()
         } else {
             let cell = AppFullScreenDescriptionCell()
             return cell
@@ -39,6 +34,12 @@ class AppFullScreenController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 450
+        
+        if indexPath.row == 0 {
+            return 450
+        } else {
+            // for second cell let tableview handle it automatically
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
     }
 }
