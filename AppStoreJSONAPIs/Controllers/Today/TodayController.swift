@@ -51,7 +51,7 @@ extension TodayController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let appFullscreenController = AppFullScreenController()
-        appFullscreenController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemovePinkView)))
+        appFullscreenController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAppFullscreenDismissal)))
         view.addSubview(appFullscreenController.view)
         
         addChild(appFullscreenController)
@@ -75,20 +75,22 @@ extension TodayController {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             // 2.second move
             appFullscreenController.view.frame = self.view.frame
-            self.tabBarController?.tabBar.isHidden = true
+           self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height
             
         }, completion: nil)
         
     }
     
-    @objc fileprivate func handleRemovePinkView(gesture: UITapGestureRecognizer) {
+    @objc fileprivate func handleAppFullscreenDismissal(gesture: UITapGestureRecognizer) {
         
         // access starting frame
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
             // 3.and with tap ... last move
             gesture.view?.frame = self.startingFrame ?? .zero
-            self.tabBarController?.tabBar.isHidden = false
+            if let tabBarFrame = self.tabBarController?.tabBar.frame {
+                self.tabBarController?.tabBar.frame.origin.y = self.view.frame.size.height - tabBarFrame.height
+            }
             
         }, completion: { _ in
             // 4. remove completely
