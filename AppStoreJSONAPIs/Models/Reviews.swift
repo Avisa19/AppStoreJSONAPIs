@@ -13,7 +13,7 @@ struct Reviews: Decodable {
 }
 
 struct ReviewFeed: Decodable {
-    let entry: [Entry]
+    var entry: [Entry]?
 }
 
 struct Entry: Decodable {

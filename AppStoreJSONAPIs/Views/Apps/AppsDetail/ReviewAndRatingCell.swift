@@ -22,13 +22,13 @@ class ReviewAndRatingCell: UICollectionViewCell {
         }
     }
     
-    let titleLabel = UILabel(text: "Review title", font: .boldSystemFont(ofSize: 18))
+   private let titleLabel = UILabel(text: "Review title", font: .boldSystemFont(ofSize: 18))
     
-    let authorLabel = UILabel(text: "Author", font: .systemFont(ofSize: 16))
+   private let authorLabel = UILabel(text: "Author", font: .systemFont(ofSize: 16))
 
-    let bodyLabel = UILabel(text: "Body label\nBody label\nBody label\nBody label\n", font: .systemFont(ofSize: 18), numberOfLines: 5)
+   private let bodyLabel = UILabel(text: "Body label\nBody label\nBody label\nBody label\n", font: .systemFont(ofSize: 18), numberOfLines: 5)
     
-    let starStackview: UIStackView = {
+   private let starStackview: UIStackView = {
         var arrangedSubviews = [UIView]()
         (0..<5).forEach({_ in
             let imageView = UIImageView(image: #imageLiteral(resourceName: "icons8-filled_star"))

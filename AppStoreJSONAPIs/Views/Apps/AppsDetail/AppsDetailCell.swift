@@ -21,11 +21,11 @@ class AppsDetailCell: UICollectionViewCell {
         }
     }
     
-    let appIconImageView = UIImageView(cornerRadius: 16)
-    let appLabel = UILabel(text: "Facebook, Inc", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
-    let priceButton = UIButton(title: "$4.99")
-    let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 20))
-    let releasedNoteLabel = UILabel(text: "Released Note", font: .systemFont(ofSize: 16), numberOfLines: 0)
+   private let appIconImageView = UIImageView(cornerRadius: 16)
+   private let appLabel = UILabel(text: "Facebook, Inc", font: .boldSystemFont(ofSize: 24), numberOfLines: 2)
+   private let priceButton = UIButton(title: "$4.99")
+   private let whatsNewLabel = UILabel(text: "What's New", font: .boldSystemFont(ofSize: 20))
+   private let releasedNoteLabel = UILabel(text: "Released Note", font: .systemFont(ofSize: 16), numberOfLines: 0)
     let separatorLine = UIView()
     
     override init(frame: CGRect) {

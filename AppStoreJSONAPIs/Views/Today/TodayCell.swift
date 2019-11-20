@@ -10,11 +10,19 @@ import UIKit
 
 class TodayCell: UICollectionViewCell {
     
+    private let imageview = UIImageView(image: #imageLiteral(resourceName: "garden"))
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .white
-        layer.cornerRadius = 12
+        layer.cornerRadius = 16
+        self.clipsToBounds = true
+        imageview.contentMode = .scaleAspectFill
+        imageview.clipsToBounds = true
+        
+        addSubview(imageview)
+        imageview.centerInSuperview(size: .init(width: 200, height: 200))
     }
     
     required init?(coder: NSCoder) {

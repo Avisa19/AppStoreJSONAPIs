@@ -15,11 +15,13 @@ class TodayController: BaseListController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.isNavigationBarHidden = true
+        
         collectionView.backgroundColor = #colorLiteral(red: 0.948936522, green: 0.9490727782, blue: 0.9489067197, alpha: 1)
         
         collectionView.register(TodayCell.self, forCellWithReuseIdentifier: todayCellId)
        
-        collectionView.contentInset = .init(top: 20, left: 0, bottom: 20, right: 0)
+        collectionView.contentInset = .init(top: 32, left: 0, bottom: 32, right: 0)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -34,10 +36,10 @@ class TodayController: BaseListController {
 
 extension TodayController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 48, height: 300)
+        return CGSize(width: view.frame.width - 48, height: 450)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
+        return 32
     }
 }

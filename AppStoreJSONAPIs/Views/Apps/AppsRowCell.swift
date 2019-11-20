@@ -19,10 +19,10 @@ class AppsRowCell: UICollectionViewCell {
         }
     }
     
-    let imageView = UIImageView(cornerRadius: 12)
-    let nameLabel = UILabel(text: "App name", font: .systemFont(ofSize: 20))
-    let companyLabel = UILabel(text: "Company name", font: .systemFont(ofSize: 13))
-    let getButton = UIButton(title: "GET")
+   private let imageView = UIImageView(cornerRadius: 12)
+   private let nameLabel = UILabel(text: "App name", font: .systemFont(ofSize: 20))
+   private let companyLabel = UILabel(text: "Company name", font: .systemFont(ofSize: 13))
+   private let getButton = UIButton(title: "GET")
     
     override init(frame: CGRect) {
         super.init(frame: frame)

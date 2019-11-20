@@ -29,13 +29,13 @@ class ReviewRowController: HorizentalSnappingController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return reviews?.feed.entry.count ?? 0
+        return reviews?.feed.entry?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reviewAndRatingCellId, for: indexPath) as! ReviewAndRatingCell
         
-        let entry = reviews?.feed.entry[indexPath.item]
+        let entry = reviews?.feed.entry?[indexPath.item]
         cell.entry = entry
         
         return cell
