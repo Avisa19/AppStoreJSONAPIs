@@ -33,6 +33,8 @@ class TodayController: BaseListController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: todayCellId, for: indexPath) as! TodayCell
         return cell
     }
+    
+    var startingFrame: CGRect?
 }
 
 
@@ -45,11 +47,46 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 32
     }
+    
 }
 
 
 extension TodayController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("didSelecting cells....")
+       
+        let blueView = UIView()
+        blueView.backgroundColor = .systemBlue
+        blueView.layer.cornerRadius = 16
+        blueView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
+        view.addSubview(blueView)
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) else { return }
+        
+        // absolute coordinate of cell
+        guard let startingFrame = cell.superview?.convert(cell.frame, to: nil) else { return }
+        
+        self.startingFrame = startingFrame
+        
+        blueView.frame = startingFrame
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            
+            blueView.frame = self.view.frame
+            
+        }, completion: nil)
+    }
+    
+    @objc func handleRemoveRedView(gesture: UITapGestureRecognizer) {
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            
+            guard let startingFrame = self.startingFrame else { return }
+            
+            gesture.view?.frame = startingFrame
+            
+        }, completion: { _ in
+            
+            gesture.view?.removeFromSuperview()
+        })
     }
 }
