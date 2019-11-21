@@ -22,7 +22,10 @@ class AppsFullScreenController: UITableViewController {
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        tableView.contentInsetAdjustmentBehavior = .never
     
+        let height = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        tableView.contentInset = .init(top: 0, left: 0, bottom: height, right: 0)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,10 +35,11 @@ class AppsFullScreenController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = FullScreenHeaderCell()
-            cell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
-            cell.todayCell.todayItem = self.todayItem
-            return cell
+            let headerCell = FullScreenHeaderCell()
+            headerCell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+            headerCell.todayCell.todayItem = self.todayItem
+            headerCell.todayCell.layer.cornerRadius = 0
+            return headerCell
         } else {
             let cell = FullScreenCell()
             return cell

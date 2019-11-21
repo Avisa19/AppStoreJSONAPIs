@@ -45,6 +45,13 @@ class TodayController: BaseListController {
     var leadingConstraint: NSLayoutConstraint?
     var widthConstraint: NSLayoutConstraint?
     var heightConstraint: NSLayoutConstraint?
+    
+    func setupTopConstraintForHeaderCell(constant: CGFloat) {
+        guard let cell = self.appsFullScreenController.tableView.cellForRow(at: [0, 0]) as? FullScreenHeaderCell else { return }
+        
+        cell.todayCell.topConstraint?.constant = constant
+        cell.layoutIfNeeded()
+    }
 }
 
 
@@ -84,6 +91,8 @@ extension TodayController {
         // we want to remove VC everytime we finishing the addChild() ***Important***
         self.appsFullScreenController = appsFullScreenController
         
+        self.collectionView.isUserInteractionEnabled = false
+        
         addChild(appsFullScreenController)
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
@@ -116,6 +125,8 @@ extension TodayController {
 
             self.tabBarController?.tabBar.isHidden = true
             
+            self.setupTopConstraintForHeaderCell(constant: 48)
+            
         }, completion: nil)
     }
     
@@ -137,11 +148,14 @@ extension TodayController {
             
             self.tabBarController?.tabBar.isHidden = false
             
+            self.setupTopConstraintForHeaderCell(constant: 24)
+            
         }, completion: { _ in
             
             self.appsFullScreenController.view?.removeFromSuperview()
             // addChild() then removing it here.
             self.appsFullScreenController.removeFromParent()
+            self.collectionView.isUserInteractionEnabled = true
         })
     }
 }

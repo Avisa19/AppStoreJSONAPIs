@@ -28,6 +28,8 @@ class TodayCell: UICollectionViewCell {
 
     let descriptionLabel = UILabel(text: "All the tools and apps you need to intelligently organize your life the right way.", font: .systemFont(ofSize: 16), numberOfLines: 3)
     
+    var topConstraint: NSLayoutConstraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -50,7 +52,10 @@ class TodayCell: UICollectionViewCell {
         ], spacing: 8)
         
         addSubview(stackview)
-        stackview.fillSuperview(padding: .init(top: 24, left: 24, bottom: 24, right: 24))
+        stackview.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 24, bottom: 24, right: 24))
+        self.topConstraint = stackview.topAnchor.constraint(equalTo: topAnchor, constant: 24)
+        self.topConstraint?.isActive = true
+
     }
     
     required init?(coder: NSCoder) {
