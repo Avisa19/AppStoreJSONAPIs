@@ -35,6 +35,7 @@ class TodayController: BaseListController {
     }
     
     var startingFrame: CGRect?
+    var appsFullScreenController: UIViewController!
 }
 
 
@@ -53,12 +54,18 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
 
 extension TodayController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
-        let blueView = UIView()
-        blueView.backgroundColor = .systemBlue
+        
+        let appsFullScreenController = AppsFullScreenController()
+        
+        let blueView = appsFullScreenController.view!
         blueView.layer.cornerRadius = 16
         blueView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
         view.addSubview(blueView)
+        
+        // we want to remove VC everytime we finishing the addChild() ***Important***
+        self.appsFullScreenController = appsFullScreenController
+        
+        addChild(appsFullScreenController)
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         
@@ -72,6 +79,7 @@ extension TodayController {
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
             blueView.frame = self.view.frame
+            self.tabBarController?.tabBar.isHidden = true
             
         }, completion: nil)
     }
@@ -84,9 +92,13 @@ extension TodayController {
             
             gesture.view?.frame = startingFrame
             
+            self.tabBarController?.tabBar.isHidden = false
+            
         }, completion: { _ in
             
             gesture.view?.removeFromSuperview()
+            // addChild() then removing it here.
+            self.appsFullScreenController.removeFromParent()
         })
     }
 }
