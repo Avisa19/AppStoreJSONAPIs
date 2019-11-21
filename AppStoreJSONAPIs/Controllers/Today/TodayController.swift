@@ -35,7 +35,12 @@ class TodayController: BaseListController {
     }
     
     var startingFrame: CGRect?
-    var appsFullScreenController: UIViewController!
+    var appsFullScreenController: AppsFullScreenController!
+    
+    var topConstraint: NSLayoutConstraint?
+    var leadingConstraint: NSLayoutConstraint?
+    var widthConstraint: NSLayoutConstraint?
+    var heightConstraint: NSLayoutConstraint?
 }
 
 
@@ -57,10 +62,15 @@ extension TodayController {
         
         let appsFullScreenController = AppsFullScreenController()
         
-        let blueView = appsFullScreenController.view!
-        blueView.layer.cornerRadius = 16
-        blueView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleRemoveRedView)))
-        view.addSubview(blueView)
+        appsFullScreenController.dismissHandler = {
+                   self.handleRemoveRedView()
+               }
+        
+        let fullScreenView = appsFullScreenController.view!
+        
+        view.addSubview(fullScreenView)
+        
+        fullScreenView.layer.cornerRadius = 16
         
         // we want to remove VC everytime we finishing the addChild() ***Important***
         self.appsFullScreenController = appsFullScreenController
@@ -74,29 +84,53 @@ extension TodayController {
         
         self.startingFrame = startingFrame
         
-        blueView.frame = startingFrame
+//        blueView.frame = startingFrame
+        fullScreenView.translatesAutoresizingMaskIntoConstraints = false
+        self.topConstraint = fullScreenView.topAnchor.constraint(equalTo: view.topAnchor, constant: startingFrame.origin.y)
+        self.leadingConstraint = fullScreenView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: startingFrame.origin.x)
+        self.widthConstraint = fullScreenView.widthAnchor.constraint(equalToConstant: startingFrame.width)
+        self.heightConstraint = fullScreenView.heightAnchor.constraint(equalToConstant: startingFrame.height)
+        
+        [topConstraint, leadingConstraint, widthConstraint, heightConstraint].forEach({$0?.isActive = true})
+        
+            self.view.layoutIfNeeded()
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
-            blueView.frame = self.view.frame
+//            blueView.frame = self.view.frame
+            self.topConstraint?.constant = 0
+            self.leadingConstraint?.constant = 0
+            self.widthConstraint?.constant = self.view.frame.width
+            self.heightConstraint?.constant = self.view.frame.height
+            
+            self.view.layoutIfNeeded() // Start Animating
+
             self.tabBarController?.tabBar.isHidden = true
             
         }, completion: nil)
     }
     
-    @objc func handleRemoveRedView(gesture: UITapGestureRecognizer) {
+    @objc func handleRemoveRedView() {
         
         UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
             
+            self.appsFullScreenController.tableView.scrollToRow(at: [0, 0], at: .top, animated: true)
+            
             guard let startingFrame = self.startingFrame else { return }
             
-            gesture.view?.frame = startingFrame
+//            gesture.view?.frame = startingFrame
+            self.topConstraint?.constant = startingFrame.origin.y
+            self.leadingConstraint?.constant = startingFrame.origin.x
+            self.widthConstraint?.constant = startingFrame.width
+            self.heightConstraint?.constant = startingFrame.height
+            
+            self.view.layoutIfNeeded()
             
             self.tabBarController?.tabBar.isHidden = false
             
         }, completion: { _ in
             
-            gesture.view?.removeFromSuperview()
+            self.appsFullScreenController.view?.removeFromSuperview()
             // addChild() then removing it here.
             self.appsFullScreenController.removeFromParent()
         })

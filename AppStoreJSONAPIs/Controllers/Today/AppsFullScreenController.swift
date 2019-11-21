@@ -11,6 +11,8 @@ import UIKit
 
 class AppsFullScreenController: UITableViewController {
     
+    var dismissHandler: (() -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +30,7 @@ class AppsFullScreenController: UITableViewController {
         
         if indexPath.row == 0 {
             let cell = FullScreenHeaderCell()
+            cell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
             return cell
         } else {
             let cell = FullScreenCell()
@@ -35,8 +38,19 @@ class AppsFullScreenController: UITableViewController {
         }
     }
     
+    @objc fileprivate func handleDismiss(button: UIButton) {
+        
+        button.isHidden = true
+        dismissHandler?()
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 450
+        // for the first row it's ok, for the rest let tableview handle automatically
+        if indexPath.row == 0 {
+            return 450
+        } else {
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
     }
     
 }
