@@ -11,6 +11,11 @@ import UIKit
 private let todayCellId = "todayCellId"
 
 class TodayController: BaseListController {
+    // define a data model, and give it value , instaed of json Data 
+    let items = [
+        TodayItem.init(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden-1"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: .white),
+        TodayItem.init(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "garden"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.2412133813, green: 0.6339458227, blue: 0.843575418, alpha: 1))
+      ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,16 +26,15 @@ class TodayController: BaseListController {
         navigationController?.isNavigationBarHidden = true
         
         collectionView.register(TodayCell.self, forCellWithReuseIdentifier: todayCellId)
-        
-        collectionView.contentInset = .init(top: 32, left: 0, bottom: 32, right: 0)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return items.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: todayCellId, for: indexPath) as! TodayCell
+        cell.todayItem = items[indexPath.row]
         return cell
     }
     
@@ -47,12 +51,17 @@ class TodayController: BaseListController {
 extension TodayController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: view.frame.width - 64, height: 450)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 32
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+           return .init(top: 32, left: 0, bottom: 32, right: 0)
+       }
     
 }
 
@@ -61,7 +70,7 @@ extension TodayController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let appsFullScreenController = AppsFullScreenController()
-        
+        appsFullScreenController.todayItem = items[indexPath.item]
         appsFullScreenController.dismissHandler = {
                    self.handleRemoveRedView()
                }

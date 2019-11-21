@@ -33,6 +33,7 @@
 		8BD16A3C238630B300AEC14A /* AppsFullScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD16A3B238630B300AEC14A /* AppsFullScreenController.swift */; };
 		8BD16A3E2386376300AEC14A /* FullScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD16A3D2386376300AEC14A /* FullScreenCell.swift */; };
 		8BD16A40238642C300AEC14A /* FullScreenHederCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD16A3F238642C300AEC14A /* FullScreenHederCell.swift */; };
+		8BD16A4223865A3100AEC14A /* TodayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD16A4123865A3100AEC14A /* TodayItem.swift */; };
 		8BDD4C2D237E4FC500978319 /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C2C237E4FC500978319 /* AppsSearchController.swift */; };
 		8BDD4C30237E548800978319 /* SearchAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C2F237E548800978319 /* SearchAppCell.swift */; };
 		8BDD4C35237E5C7D00978319 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDD4C34237E5C7D00978319 /* UIView+Layout.swift */; };
@@ -78,6 +79,7 @@
 		8BD16A3B238630B300AEC14A /* AppsFullScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsFullScreenController.swift; sourceTree = "<group>"; };
 		8BD16A3D2386376300AEC14A /* FullScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenCell.swift; sourceTree = "<group>"; };
 		8BD16A3F238642C300AEC14A /* FullScreenHederCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenHederCell.swift; sourceTree = "<group>"; };
+		8BD16A4123865A3100AEC14A /* TodayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayItem.swift; sourceTree = "<group>"; };
 		8BDD4C2C237E4FC500978319 /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		8BDD4C2F237E548800978319 /* SearchAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppCell.swift; sourceTree = "<group>"; };
 		8BDD4C34237E5C7D00978319 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				8BDD4C39237E7C9000978319 /* SearchResult.swift */,
 				8B4B6AD0237FF80A0099D3EF /* AppGroup.swift */,
 				8BB156AC2383AE1E0057DD82 /* Reviews.swift */,
+				8BD16A4123865A3100AEC14A /* TodayItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				8BEFA0F6237EB16F00CD32D1 /* BaseListController.swift in Sources */,
 				8B4FDD1D237D630100EBF051 /* SceneDelegate.swift in Sources */,
 				8B4B6AD1237FF80A0099D3EF /* AppGroup.swift in Sources */,
+				8BD16A4223865A3100AEC14A /* TodayItem.swift in Sources */,
 				8B4CD802237FA70500EE9C05 /* AppsHeaderHorizentalController.swift in Sources */,
 				8B4CD800237FA52F00EE9C05 /* AppsPageHeader.swift in Sources */,
 				8BD16A3E2386376300AEC14A /* FullScreenCell.swift in Sources */,

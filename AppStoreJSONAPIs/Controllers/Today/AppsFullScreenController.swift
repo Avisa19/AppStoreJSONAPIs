@@ -13,12 +13,15 @@ class AppsFullScreenController: UITableViewController {
     
     var dismissHandler: (() -> ())?
     
+    var todayItem: TodayItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         tableView.tableFooterView = UIView()
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
     
     }
     
@@ -31,6 +34,7 @@ class AppsFullScreenController: UITableViewController {
         if indexPath.row == 0 {
             let cell = FullScreenHeaderCell()
             cell.closeButton.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
+            cell.todayCell.todayItem = self.todayItem
             return cell
         } else {
             let cell = FullScreenCell()
