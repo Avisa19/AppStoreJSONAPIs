@@ -10,11 +10,14 @@ import UIKit
 
 class TodayMultipleAppCell: BaseTodayCell {
     
-   override var todayItem: TodayItem? {
+    override var todayItem: TodayItem? {
         didSet {
             guard let todayItem = todayItem else { return }
             categoryLabel.text = todayItem.category
             titleLabel.text = todayItem.title
+            
+            multipleAppListController.apps = todayItem.apps
+            multipleAppListController.collectionView.reloadData()
         }
     }
     

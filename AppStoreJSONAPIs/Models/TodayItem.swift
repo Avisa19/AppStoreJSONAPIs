@@ -22,6 +22,8 @@ struct TodayItem {
     enum CellType: String {
         case single, multiple
     }
+    
+    let apps: [FeedResult]
 }
 
 // with data Model you can be flexible, you can give data by default, or json Data

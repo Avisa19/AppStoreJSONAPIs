@@ -20,19 +20,19 @@ class TodayMultipleAppsController: BaseListController {
         collectionView.backgroundColor = .white
         
         collectionView.register(MultipleAppCell.self, forCellWithReuseIdentifier: multipleCell)
-        
-        Service.shared.fetchGames { (apps, err) in
-            if let err = err {
-                print("Failed to fetch games App for today list:", err)
-                return
-            }
-            guard let apps = apps?.feed.results else { return }
-            self.apps = apps
-            
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
+        // never execute fetch code inside of the view.
+//        Service.shared.fetchGames { (apps, err) in
+//            if let err = err {
+//                print("Failed to fetch games App for today list:", err)
+//                return
+//            }
+//            guard let apps = apps?.feed.results else { return }
+//            self.apps = apps
+//            
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
