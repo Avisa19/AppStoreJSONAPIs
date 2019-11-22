@@ -13,6 +13,7 @@
 		8B0BC2682382A24C000AB876 /* PreviewScreenshotsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0BC2672382A24C000AB876 /* PreviewScreenshotsCell.swift */; };
 		8B25891B238797730079523A /* TodayMultipleAppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25891A238797730079523A /* TodayMultipleAppsController.swift */; };
 		8B25891D238798E00079523A /* MultipleAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25891C238798E00079523A /* MultipleAppCell.swift */; };
+		8B25891F2387DE9D0079523A /* BackEnabledNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B25891E2387DE9D0079523A /* BackEnabledNavigationController.swift */; };
 		8B48639523839124001AC212 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48639423839124001AC212 /* ReviewCell.swift */; };
 		8B4863972383929D001AC212 /* ReviewRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4863962383929D001AC212 /* ReviewRowController.swift */; };
 		8B48639923839342001AC212 /* ReviewAndRatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48639823839342001AC212 /* ReviewAndRatingCell.swift */; };
@@ -61,6 +62,7 @@
 		8B0BC2672382A24C000AB876 /* PreviewScreenshotsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewScreenshotsCell.swift; sourceTree = "<group>"; };
 		8B25891A238797730079523A /* TodayMultipleAppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayMultipleAppsController.swift; sourceTree = "<group>"; };
 		8B25891C238798E00079523A /* MultipleAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleAppCell.swift; sourceTree = "<group>"; };
+		8B25891E2387DE9D0079523A /* BackEnabledNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackEnabledNavigationController.swift; sourceTree = "<group>"; };
 		8B48639423839124001AC212 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		8B4863962383929D001AC212 /* ReviewRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRowController.swift; sourceTree = "<group>"; };
 		8B48639823839342001AC212 /* ReviewAndRatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAndRatingCell.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				8BD16A372386252E00AEC14A /* TodayController.swift */,
 				8BD16A3B238630B300AEC14A /* AppsFullScreenController.swift */,
 				8B25891A238797730079523A /* TodayMultipleAppsController.swift */,
+				8B25891E2387DE9D0079523A /* BackEnabledNavigationController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				8BFE29E92382638C00C6D588 /* AppDetailController.swift in Sources */,
 				8BD16A40238642C300AEC14A /* FullScreenHederCell.swift in Sources */,
 				8BEFA0F8237EB24A00CD32D1 /* AppsGroupCell.swift in Sources */,
+				8B25891F2387DE9D0079523A /* BackEnabledNavigationController.swift in Sources */,
 				8B0BC2682382A24C000AB876 /* PreviewScreenshotsCell.swift in Sources */,
 				8BB156AD2383AE1E0057DD82 /* Reviews.swift in Sources */,
 				8BD16A382386252E00AEC14A /* TodayController.swift in Sources */,

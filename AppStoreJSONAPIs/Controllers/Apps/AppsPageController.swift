@@ -15,7 +15,7 @@ class AppsPageController: BaseListController {
     
     let activityIndicatorView: UIActivityIndicatorView = {
         let uiv = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        uiv.color = .black
+        uiv.color = .darkGray
         uiv.startAnimating()
         uiv.hidesWhenStopped = true
         return uiv

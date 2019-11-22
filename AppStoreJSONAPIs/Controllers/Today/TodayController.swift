@@ -14,7 +14,7 @@ class TodayController: BaseListController {
     var items = [TodayItem]()
     
     let activityIndicatorView: UIActivityIndicatorView = {
-        let uiv = UIActivityIndicatorView(style: .whiteLarge)
+       let uiv = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         uiv.color = .darkGray
         uiv.startAnimating()
         return uiv
@@ -35,6 +35,11 @@ class TodayController: BaseListController {
         collectionView.register(TodayMultipleAppCell.self, forCellWithReuseIdentifier: TodayItem.CellType.multiple.rawValue)
         
         fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.superview?.setNeedsLayout()
     }
     
     fileprivate func fetchData() {
@@ -99,8 +104,33 @@ class TodayController: BaseListController {
         
         cell.todayItem = items[indexPath.item]
         
+        (cell as? TodayMultipleAppCell)?.multipleAppListController.collectionView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMultipleCell)))
         
         return cell
+    }
+    
+    @objc func handleTapMultipleCell(gesture: UITapGestureRecognizer) {
+        
+        let tapCell = gesture.view
+        
+        var didTapView = tapCell?.superview
+        
+        // we iterate through parent view up to up while we reached to this paticular cell.
+        while didTapView != nil {
+            if let cell = didTapView as? TodayMultipleAppCell {
+                
+                guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
+                
+                let fullController = TodayMultipleAppsController(mode: .fullScreen)
+                
+                fullController.apps = self.items[indexPath.item].apps
+                present(BackEnabledNavigationController(rootViewController: fullController), animated: true)
+                
+            }
+            
+            didTapView = didTapView?.superview
+        }
+        
     }
     
     var startingFrame: CGRect?
@@ -141,13 +171,14 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
 
 
 extension TodayController {
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
         if items[indexPath.item].cellType == .multiple {
-            let fullController = TodayMultipleAppsController(mode: .large)
+            let fullController = TodayMultipleAppsController(mode: .fullScreen)
             fullController.apps = self.items[indexPath.item].apps
-            present(fullController, animated: true)
+            present(BackEnabledNavigationController(rootViewController: fullController), animated: true)
             return
         }
         
