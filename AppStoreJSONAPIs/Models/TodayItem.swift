@@ -23,3 +23,5 @@ struct TodayItem {
         case single, multiple
     }
 }
+
+// with data Model you can be flexible, you can give data by default, or json Data

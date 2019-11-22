@@ -11,9 +11,11 @@ import UIKit
 class TodayController: BaseListController {
     // define a data model, and give it value , instaed of json Data
     let items = [
-        TodayItem.init(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden-1"), description: "", backgroundColor: .white, cellType: .multiple),
+       
         TodayItem.init(category: "LIFE HACK", title: "Utilizing your Time", image: #imageLiteral(resourceName: "garden-1"), description: "All the tools and apps you need to intelligently organize your life the right way.", backgroundColor: .white, cellType: .single),
-        TodayItem.init(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "garden"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.2412133813, green: 0.6339458227, blue: 0.843575418, alpha: 1), cellType: .single)
+         TodayItem.init(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden-1"), description: "", backgroundColor: .white, cellType: .multiple),
+        TodayItem.init(category: "HOLIDAYS", title: "Travel on a Budget", image: #imageLiteral(resourceName: "garden"), description: "Find out all you need to know on how to travel without packing everything!", backgroundColor: #colorLiteral(red: 0.2412133813, green: 0.6339458227, blue: 0.843575418, alpha: 1), cellType: .single),
+         TodayItem.init(category: "THE DAILY LIST", title: "Test-Drive These CarPlay Apps", image: #imageLiteral(resourceName: "garden-1"), description: "", backgroundColor: .white, cellType: .multiple)
       ]
     
     override func viewDidLoad() {
