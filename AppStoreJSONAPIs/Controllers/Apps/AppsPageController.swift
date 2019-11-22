@@ -25,7 +25,7 @@ class AppsPageController: BaseListController {
         super.viewDidLoad()
         
         view.addSubview(activityIndicatorView)
-        activityIndicatorView.fillSuperview()
+        activityIndicatorView.centerInSuperview()
         
         collectionView.backgroundColor = .white
         

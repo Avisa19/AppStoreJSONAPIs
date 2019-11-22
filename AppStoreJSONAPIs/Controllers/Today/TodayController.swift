@@ -143,6 +143,14 @@ extension TodayController: UICollectionViewDelegateFlowLayout {
 extension TodayController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        
+        if items[indexPath.item].cellType == .multiple {
+            let fullController = TodayMultipleAppsController(mode: .large)
+            fullController.apps = self.items[indexPath.item].apps
+            present(fullController, animated: true)
+            return
+        }
+        
         let appsFullScreenController = AppsFullScreenController()
         appsFullScreenController.todayItem = items[indexPath.item]
         appsFullScreenController.dismissHandler = {
