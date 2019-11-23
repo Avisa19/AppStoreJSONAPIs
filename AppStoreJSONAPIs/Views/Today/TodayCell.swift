@@ -18,6 +18,7 @@ class TodayCell: BaseTodayCell {
             imageview.image = todayItem.image
             descriptionLabel.text = todayItem.description
             backgroundColor = todayItem.backgroundColor
+            backgroundView?.backgroundColor = todayItem.backgroundColor
         }
     }
     
@@ -33,9 +34,11 @@ class TodayCell: BaseTodayCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        imageview.clipsToBounds = true
         backgroundColor = .white
         layer.cornerRadius = 16
-        clipsToBounds = true
+        // not letting shadow seen
+//        clipsToBounds = true
         
         imageview.contentMode = .scaleAspectFill
         

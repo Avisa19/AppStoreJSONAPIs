@@ -34,6 +34,7 @@ class TodayMultipleAppCell: BaseTodayCell {
         
         titleLabel.numberOfLines = 2
         
+        
         let stackview = VerticalStackView(arrangedSubviews: [
             categoryLabel,
             titleLabel,
