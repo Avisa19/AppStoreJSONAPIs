@@ -119,6 +119,7 @@ class TodayController: BaseListController {
         while didTapView != nil {
             if let cell = didTapView as? TodayMultipleAppCell {
                 
+                // hit the right cell according to cell number.
                 guard let indexPath = self.collectionView.indexPath(for: cell) else { return }
                 
                 let fullController = TodayMultipleAppsController(mode: .fullScreen)
