@@ -147,10 +147,11 @@ class TodayController: BaseListController {
     var anchoredConstraints: AnchoredConstraints?
     
     let blurVisualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+    var appFullScreenBeginOffset: CGFloat = 0
     
-    func setupTopConstraintForHeaderCell(constant: CGFloat) {
+   fileprivate func setupTopConstraintForHeaderCell(constant: CGFloat) {
         guard let cell = self.appsFullScreenController.tableView.cellForRow(at: [0, 0]) as? FullScreenHeaderCell else { return }
-        
+//        cell.closeButton.alpha = 0
         cell.todayCell.topConstraint?.constant = constant
         cell.layoutIfNeeded()
     }
@@ -215,17 +216,38 @@ extension TodayController {
         
         // 3# not interfere with UITableView scrolling
     }
-    
+    // when you working with gesture , you will start working with numbers, to limit the dragging in right postion and situation.
     @objc fileprivate func handleDrag(gesture: UIPanGestureRecognizer) {
         
+        if gesture.state == .began {
+            appFullScreenBeginOffset = appsFullScreenController.tableView.contentOffset.y
+        }
+        
+        
+        if self.appsFullScreenController.tableView.contentOffset.y > 0 {
+            return
+        }
+        
         let translationY = gesture.translation(in: appsFullScreenController.view).y
+        
         if gesture.state == .changed {
-            let scale = 1 - translationY / 1000
-            let transform: CGAffineTransform = .init(scaleX: scale, y: scale)
-            self.appsFullScreenController.view.transform = transform
+            if translationY > 0 {
+                
+                let rightOffset = translationY - appFullScreenBeginOffset
+                
+                var scale = 1 - rightOffset / 1000
+                
+                scale = min(1, scale)
+                scale = max(0.5, scale)
+                
+                let transform: CGAffineTransform = .init(scaleX: scale, y: scale)
+                self.appsFullScreenController.view.transform = transform
+            }
             
         } else if gesture.state == .ended {
-            handleAppFullScreenDismissal()
+            if translationY > 0 {
+                handleAppFullScreenDismissal()
+            }
         }
         
     }
