@@ -20,11 +20,20 @@ class AppsFullScreenController: UIViewController, UITableViewDataSource, UITable
     let tableView = UITableView(frame: .zero, style: .plain)
     
      func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
         if scrollView.contentOffset.y < 0 {
             
             scrollView.isScrollEnabled = false
             scrollView.isScrollEnabled = true
         }
+      
+         let translationY = -90 - (self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0)
+        let transform = scrollView.contentOffset.y > 100 ? CGAffineTransform(translationX: 0, y: translationY) : .identity
+        
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            
+            self.floatingContainerView.transform = transform
+        })
     }
     
     let closeButton: UIButton = {
@@ -57,17 +66,23 @@ class AppsFullScreenController: UIViewController, UITableViewDataSource, UITable
         setupFloatingControls()
     }
     
+      let floatingContainerView = UIView()
+    
     fileprivate func setupFloatingControls() {
-        let floatingContainerView = UIView()
+      
         floatingContainerView.clipsToBounds = true
         view.addSubview(floatingContainerView)
-        let bottomPadding = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        floatingContainerView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: bottomPadding, right: 16), size: .init(width: 0, height: 90))
+//        let bottomPadding = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        
+        // initial position for first step for start Animating...
+        floatingContainerView.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: -90, right: 16), size: .init(width: 0, height: 90))
         floatingContainerView.layer.cornerRadius = 16
         
         let blurVisualEffect = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
         floatingContainerView.addSubview(blurVisualEffect)
         blurVisualEffect.fillSuperview()
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         
         // add our subViews
         let imageView = UIImageView(cornerRadius: 16)
@@ -93,6 +108,13 @@ class AppsFullScreenController: UIViewController, UITableViewDataSource, UITable
         floatingContainerView.addSubview(stackView)
         stackView.fillSuperview(padding: .init(top: 0, left: 16, bottom: 0, right: 16))
         stackView.alignment = .center
+    }
+    
+    @objc fileprivate func handleTap() {
+        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            
+            self.floatingContainerView.transform = .init(translationX: 0, y: -90)
+        })
     }
     
     fileprivate func setupCloseButton() {
