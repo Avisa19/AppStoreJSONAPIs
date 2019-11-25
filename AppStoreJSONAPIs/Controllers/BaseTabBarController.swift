@@ -16,6 +16,8 @@ class BaseTabBarController: UITabBarController {
         
         viewControllers = [
             
+            createNavController(viewController: MusicController(), title: "Music", imageName: #imageLiteral(resourceName: "icons8-music")),
+            
             createNavController(viewController: TodayController(), title: "Today", imageName: #imageLiteral(resourceName: "today_icon-1")),
             
             createNavController(viewController: AppsPageController(), title: "Apps", imageName: #imageLiteral(resourceName: "apps")),
