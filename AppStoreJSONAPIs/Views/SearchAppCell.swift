@@ -24,14 +24,14 @@ class SearchAppCell: UICollectionViewCell {
             
             appIconImageView.sd_setImage(with: URL(string: appResult.artworkUrl100))
             
-            screenShot1ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[0]))
+            screenShot1ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls?[0] ?? ""))
             
-            if appResult.screenshotUrls.count > 1 {
-                screenShot2ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
+            if appResult.screenshotUrls?.count ?? 0 > 1 {
+                screenShot2ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls?[1] ?? ""))
             }
             
-            if appResult.screenshotUrls.count > 2 {
-                screenShot3ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
+            if appResult.screenshotUrls?.count ?? 0 > 2 {
+                screenShot3ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls?[2] ?? ""))
             }
         }
     }
